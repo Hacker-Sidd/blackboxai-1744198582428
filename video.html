@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Clone - Video Player</title>
+    <link href="https://unpkg.com/tailwindcss@^3.0.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .sidebar {
+            scrollbar-width: thin;
+        }
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: #606060;
+            border-radius: 4px;
+        }
+        .video-container {
+            aspect-ratio: 16/9;
+        }
+    </style>
+</head>
+<body class="bg-[#0f0f0f] text-white">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 bg-[#0f0f0f] flex items-center justify-between px-4 h-14 z-50">
+        <div class="flex items-center">
+            <button class="p-2 mr-2 rounded-full hover:bg-[#272727]">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+            <div class="flex items-center cursor-pointer">
+                <i class="fab fa-youtube text-red-600 text-2xl mr-1"></i>
+                <span class="font-bold text-xl">YouTube</span>
+            </div>
+        </div>
+
+        <div class="flex items-center flex-grow max-w-2xl mx-4">
+            <div class="flex w-full">
+                <input type="text" placeholder="Search" class="bg-[#121212] border border-[#303030] rounded-l-full px-4 py-2 w-full focus:outline-none focus:border-blue-500">
+                <button class="bg-[#222222] border border-l-0 border-[#303030] rounded-r-full px-5 hover:bg-[#303030]">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <button class="ml-4 p-2 rounded-full bg-[#222222] hover:bg-[#303030]">
+                <i class="fas fa-microphone"></i>
+            </button>
+        </div>
+
+        <div class="flex items-center">
+            <button class="p-2 mx-1 rounded-full hover:bg-[#272727]">
+                <i class="fas fa-video text-xl"></i>
+            </button>
+            <button class="p-2 mx-1 rounded-full hover:bg-[#272727]">
+                <i class="fas fa-bell text-xl"></i>
+            </button>
+            <button class="w-8 h-8 ml-2 rounded-full bg-blue-500 flex items-center justify-center">
+                <span class="text-sm font-medium">U</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="flex pt-14">
+        <!-- Video Player Section -->
+        <main class="ml-0 md:ml-64 p-4 flex-1">
+            <div class="video-container w-full bg-black mb-4" id="video-player">
+                <!-- Video Player will be inserted by player.js -->
+            </div>
+            <div class="flex items-center justify-between mb-2">
+                <div class="flex space-x-4">
+                    <button class="like-btn flex items-center text-gray-400 hover:text-white">
+                        <i class="fas fa-thumbs-up mr-2"></i>
+                        <span>12K</span>
+                    </button>
+                    <button class="dislike-btn flex items-center text-gray-400 hover:text-white">
+                        <i class="fas fa-thumbs-down mr-2"></i>
+                        <span>1K</span>
+                    </button>
+                    <button class="share-btn flex items-center text-gray-400 hover:text-white">
+                        <i class="fas fa-share mr-2"></i>
+                        <span>Share</span>
+                    </button>
+                </div>
+                <button class="save-btn flex items-center text-gray-400 hover:text-white">
+                    <i class="fas fa-bookmark mr-2"></i>
+                    <span>Save</span>
+                </button>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-4">
+                <!-- Video Info -->
+                <div class="flex-1">
+                    <h1 class="text-xl font-bold mb-2">Video Title</h1>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-gray-500 mr-3"></div>
+                            <div>
+                                <p class="font-medium">Channel Name</p>
+                                <p class="text-gray-400 text-sm">1.2M subscribers</p>
+                            </div>
+                        </div>
+                        <button class="bg-[#272727] px-4 py-2 rounded-full hover:bg-[#3f3f3f]">
+                            Subscribe
+                        </button>
+                    </div>
+
+                    <!-- Video Description -->
+                    <div class="bg-[#272727] p-3 rounded-lg mb-4">
+                        <div class="flex gap-4 text-sm mb-2">
+                            <span>1.2M views</span>
+                            <span>3 days ago</span>
+                        </div>
+                        <p class="text-sm">Video description goes here. This is where the creator would put information about the video content.</p>
+                        <button class="show-more-btn text-blue-500 text-sm mt-2">Show more</button>
+                    </div>
+
+                    <!-- Comments Section -->
+                    <div class="mt-6">
+                        <h3 class="font-bold mb-4">Comments (42)</h3>
+                        <form class="comment-form flex mb-4">
+                            <div class="w-8 h-8 rounded-full bg-gray-500 mr-3"></div>
+                            <input type="text" class="comment-input bg-transparent border-b border-[#303030] w-full focus:outline-none focus:border-white" placeholder="Add a comment...">
+                        </form>
+                        <div class="comments-container space-y-4"></div>
+                    </div>
+                </div>
+
+                <!-- Recommendations Section -->
+                <div class="md:w-80 flex-shrink-0">
+                    <div class="space-y-2">
+                        <h3 class="font-bold">Recommended Videos</h3>
+                        <div class="recommendations-container space-y-3"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/player.js"></script>
+    <script src="js/comments.js"></script>
+    <script src="js/recommendations.js"></script>
+    <script>
+        // Like/Dislike functionality
+        document.querySelectorAll('.like-btn, .dislike-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const isLike = this.classList.contains('like-btn');
+                const countEl = this.querySelector('span');
+                let count = parseInt(countEl.textContent.replace(/[^\d]/g, ''));
+                
+                if (this.classList.contains('text-blue-500')) {
+                    // Already active - remove like/dislike
+                    this.classList.remove('text-blue-500');
+                    countEl.textContent = countEl.textContent.replace(count, count - 1);
+                } else {
+                    // Not active - add like/dislike
+                    const oppositeBtn = isLike 
+                        ? document.querySelector('.dislike-btn')
+                        : document.querySelector('.like-btn');
+                    
+                    if (oppositeBtn.classList.contains('text-blue-500')) {
+                        oppositeBtn.classList.remove('text-blue-500');
+                        const oppositeCount = oppositeBtn.querySelector('span');
+                        const oppositeNum = parseInt(oppositeCount.textContent.replace(/[^\d]/g, ''));
+                        oppositeCount.textContent = oppositeCount.textContent.replace(oppositeNum, oppositeNum - 1);
+                    }
+                    
+                    this.classList.add('text-blue-500');
+                    countEl.textContent = countEl.textContent.replace(count, count + 1);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
